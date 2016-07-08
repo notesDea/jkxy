@@ -15,7 +15,7 @@ public class SearchFile {
             @Override
             public boolean accept(File pathname) {
                 //directory or matches keyword, return true
-                return  (pathname.isDirectory() || (pathname.isFile() && pathname.getName().matches(regex)));
+                return  (pathname.isDirectory() || (pathname.isFile() && pathname.getName().toLowerCase().matches(regex)));
             }
         });
 
