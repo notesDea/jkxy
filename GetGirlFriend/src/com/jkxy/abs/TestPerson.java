@@ -10,5 +10,6 @@ public class TestPerson {
 
         student.say();
         worker.say();
+
     }
 }

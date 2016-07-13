@@ -7,20 +7,34 @@ import java.util.Scanner;
  */
 public class QuatientWithException {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static int quotient(int number1, int number2) {
+        if (number2 == 0) {
+            throw new ArithmeticException("Divisor cannot be zero");
+        }
 
-        System.out.print("Enter two numbers: ");
-        int number1 = scanner.nextInt();
-        int number2 = scanner.nextInt();
-
-        quatient(number1, number2);
+        return number1 / number2;
     }
 
-    public static void quatient(int number1, int number2) {
-        if (number2 == 0) {
-            throw new ArithmeticException("The denominator is not zero");
+    public static void main(String[] args) {
+        try {
+            int result1 = quotient(3, 2);
+
+            System.out.println(result1);
+        } catch (Exception e) {
+            System.out.println("Exception: an integer cannot be divided by zero");
+        } finally {
+            System.out.println("Execution continue");
         }
-        System.out.println(number1 / number2);
+
+        try {
+            int result2 = quotient(3, 0);
+
+            System.out.println(result2);
+        } catch (Exception e) {
+            System.out.println("Exception: an integer cannot be divided by zero");
+        } finally {
+            System.out.println("Execution continue");
+        }
+
     }
 }
