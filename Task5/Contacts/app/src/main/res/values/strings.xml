@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="add">add</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_add_contact">Add to contact</string>
+    <string name="contact_name">Name：</string>
+    <string name="contact_phone_number">Phone：</string>
+    <string name="choose">Please choose</string>
+    <string name="choose_phone">Call</string>
+    <string name="choose_sms">Send message</string>
+    <string name="delete">Delete</string>
+</resources>
