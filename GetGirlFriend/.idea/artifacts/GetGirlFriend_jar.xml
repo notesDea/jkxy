@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="GetGirlFriend:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/GetGirlFriend_jar</output-path>
-    <root id="archive" name="GetGirlFriend.jar">
-      <element id="module-output" name="GetGirlFriend" />
-    </root>
-  </artifact>
-</component>
