@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ImageBrowser</string>
+    <string name="open_image">Open image</string>
+    <string name="up_alpha">增大透明度</string>
+    <string name="down_alpha">降低透明度</string>
+    <string name="up">增大</string>
+    <string name="down">缩小</string>
+</resources>

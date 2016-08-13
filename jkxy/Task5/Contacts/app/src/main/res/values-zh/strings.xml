@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">联系人</string>
+    <string name="submit">确认</string>
+    <string name="cancel">取消</string>
+    <string name="add">添加</string>
+    <string name="title_add_contact">添加联系人</string>
+    <string name="contact_name">姓名：</string>
+    <string name="choose">请选择</string>
+    <string name="choose_phone">打电话</string>
+    <string name="choose_sms">发送短信</string>
+    <string name="contact_phone_number">电话号码：</string>
+    <string name="delete">删除</string>
+</resources>
