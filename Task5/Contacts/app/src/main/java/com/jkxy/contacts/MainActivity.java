@@ -2,6 +2,9 @@ package com.jkxy.contacts;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -30,18 +33,20 @@ import com.jkxy.contacts.view.AddContactDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity
         implements AddContactDialogFragment.AddContactDialogListener {
 
-
-
+    public static final int REQUEST_CODE_WRITE_CONTACTS = 100;
+    public static final int REQUEST_CODE_READ_CONTACTS = 101;
     ArrayList<String> phoneNumber = new ArrayList<>();
     private ListView contactsView;
     private ArrayAdapter<String> adapter;
     private List<String> contactsList = new ArrayList<>();
     private List<Long> contactId = new ArrayList<>();
     private Button btnAddContact;
+    private String name, phoneNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
         btnAddContact = (Button) findViewById(R.id.btnAddContact);
         contactsView = (ListView) findViewById(R.id.contacts_view);
-        readContacts();
+        canReadContact();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsList);
         contactsView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -137,7 +142,38 @@ public class MainActivity extends AppCompatActivity
         return builder.create();
     }
 
+    public void canAddContact(String name, String phoneNumber) {
+        //判断SDK版本，判断是否有允许写入联系人的权限
+        if (Build.VERSION.SDK_INT >= 23) {
+            int checkWriteContactsPermission =
+                    checkSelfPermission(android.Manifest.permission.WRITE_CONTACTS);
+            //如果权限不同意，申请权限
+            if (checkWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+                //第二个参数填请求码（必须>= 0），会报告给onRequestPermissionsResult
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_CONTACTS},
+                        REQUEST_CODE_WRITE_CONTACTS);
+            } else {
+                addContact(name, phoneNumber);
+            }
+        } else {
+            addContact(name, phoneNumber);
+        }
+    }
 
+    public void canReadContact() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int checkReadContactsPermission =
+                    checkSelfPermission(android.Manifest.permission.READ_CONTACTS);
+            if (checkReadContactsPermission != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
+                        REQUEST_CODE_READ_CONTACTS);
+            } else {
+                readContacts();
+            }
+        } else {
+            readContacts();
+        }
+    }
 
     //读取联系人，显示到活动的ListView
     private void readContacts() {
@@ -170,8 +206,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     //添加联系人
     public void addContact(String name, String phoneNumber) {
+
         ContentValues values = new ContentValues();
         Uri rawContactUri = getContentResolver().insert(RawContacts.CONTENT_URI, values);
          //新建联系人的ID
@@ -216,7 +254,7 @@ public class MainActivity extends AppCompatActivity
         if ("".equals(name) || "".equals(phoneNumber)) {
             Toast.makeText(MainActivity.this, "姓名或电话号码不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            addContact(name, phoneNumber);
+            canAddContact(name, phoneNumber);
             adapter.notifyDataSetChanged();
         }
     }
@@ -225,5 +263,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDialogNegativeClick() {
         //取消操作
+    }
+
+    //请求权限
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_WRITE_CONTACTS:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                }
+                break;
+            case REQUEST_CODE_READ_CONTACTS:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    readContacts();
+                    adapter.notifyDataSetChanged();
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

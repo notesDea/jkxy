@@ -55,11 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binder != null) {
-                    try {
-                        binder.isRun(false);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+                    callUnregist();
                     unbindService(conn);
                     binder = null;
                 }

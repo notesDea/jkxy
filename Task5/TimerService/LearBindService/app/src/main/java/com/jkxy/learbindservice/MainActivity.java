@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binder != null) {
-                  	callUnregist;
+                    //解除绑定时要取消回调，数字就不会累加
+                  	callUnregist();
                     unbindService(conn);
                     binder = null;
                 }

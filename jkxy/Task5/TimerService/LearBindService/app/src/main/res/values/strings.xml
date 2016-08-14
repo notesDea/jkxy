@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Lear Bind Service</string>
-    <string name="unbind_service">Unbind service</string>
-    <string name="bind_service">Bind service</string>
-    <string name="value_text">Current value is %1$s</string>
-</resources>
