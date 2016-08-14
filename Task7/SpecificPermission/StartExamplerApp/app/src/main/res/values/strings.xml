@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StartExamplerApp</string>
+    <string name="start_example_app">Start Example App</string>
+    <string name="start_faild">启动失败</string>
+</resources>

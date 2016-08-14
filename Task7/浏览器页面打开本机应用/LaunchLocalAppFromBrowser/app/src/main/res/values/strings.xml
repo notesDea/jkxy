@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Launch Local App From Browser</string>
+    <string name="launch_uri_tip">Click the button below to show the local activity and you can also navigate to the uri \'local://example.app\' using you web browser to launch the local activity</string>
+    <string name="launch_local_activity">Launch the local activity</string>
+</resources>
