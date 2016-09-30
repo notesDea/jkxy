@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">一键锁屏</string>
+    <string name="setting_app_name">配置一键锁屏</string>
+    <string name="admin_receiver_status_enabled">已经获取管理者权限</string>
+    <string name="admin_receiver_status_disabled">已经取消了管理者权限</string>
+    <string name="settingdeviceadmin_tip_getadmin">需要获取管理者权限才能拥有锁屏功能</string>
+    <string name="settingdeviceadmin_getadmin">获取设备管理者权限</string>
+    <string name="settingdeviceadmin_canceladmin">取消设置管理者权限</string>
+    <string name="all_lockscreen">锁屏</string>
+</resources>

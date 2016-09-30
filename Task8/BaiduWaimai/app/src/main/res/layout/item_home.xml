@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/shopone"
+        android:id="@+id/iv_home_shopicon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignTop="@id/iv_home_shopicon"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearlayout_mine_wellicon"
+        android:layout_marginEnd="15dp">
+
+        <TextView
+            android:id="@+id/tv_home_coupon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:textColor="@color/nattierBlue"
+            android:background="@drawable/home_tvrect"
+            android:text="@string/home_coupon"
+            android:layout_marginEnd="5dp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_home_invoice"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:textColor="@color/nattierBlue"
+            android:background="@drawable/home_tvrect"
+            android:text="@string/home_invoice"
+            android:layout_marginEnd="5dp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_home_pay"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:textColor="@color/nattierBlue"
+            android:background="@drawable/home_tvrect"
+            android:text="@string/home_pay"
+            android:layout_marginEnd="5dp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_home_payment"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:textColor="@color/nattierBlue"
+            android:background="@drawable/home_tvrect"
+            android:text="@string/home_payment"
+            android:visibility="visible"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="必胜客欢乐餐厅"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/tv_home_shopname"
+        android:layout_marginStart="5dp"
+        android:layout_alignTop="@+id/iv_home_shopicon"
+        android:layout_toEndOf="@+id/iv_home_shopicon"
+        android:layout_toStartOf="@id/linearlayout_mine_wellicon"/>
+
+    <RatingBar
+        android:id="@+id/ratingbar_home_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="3"
+        style="@style/home_ratingbar"
+        android:layout_below="@+id/tv_home_shopname"
+        android:layout_alignStart="@+id/tv_home_shopname"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:id="@+id/tv_home_soldnumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_soldnumbers"
+        android:layout_toEndOf="@id/ratingbar_home_star"
+        android:layout_alignTop="@id/ratingbar_home_star" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="990m"
+        android:id="@+id/tv_home_distance"
+        android:layout_alignBaseline="@+id/tv_home_soldnumbers"
+        android:layout_alignBottom="@+id/tv_home_soldnumbers"
+        android:layout_alignEnd="@+id/linearlayout_mine_wellicon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignStart="@id/ratingbar_home_star"
+        android:layout_alignTop="@+id/ratingbar_home_star"
+        android:layout_marginTop="30dp">
+
+
+        <TextView
+            android:id="@+id/tv_home_startingfee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_startingfee" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" | "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_distributionfee"
+            android:id="@+id/tv_home_distributionfee" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" | "/>
+
+        <TextView
+            android:id="@+id/tvAvgTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_avgtime"/>
+    </LinearLayout>
+
+    <include layout="@layout/layou_tv_welldetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_home_shopicon"
+        android:layout_alignStart="@+id/iv_home_shopicon"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+</RelativeLayout>

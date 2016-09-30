@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting_device_admin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.notesdea.lockscreen.SettingAdminActivity">
+
+    <TextView
+        android:id="@+id/tv_settingdeviceadmin_tip_get_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settingdeviceadmin_tip_getadmin" />
+    <Button
+        android:id="@+id/btn_settingdeviceadmin_getadmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_settingdeviceadmin_tip_get_admin"
+        android:text="@string/settingdeviceadmin_getadmin"
+        android:visibility="visible"/>
+
+    <Button
+        android:id="@+id/btn_settingdeviceadmin_canceladmin"
+        android:text="@string/settingdeviceadmin_canceladmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_settingdeviceadmin_tip_get_admin"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_lockscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_settingdeviceadmin_canceladmin"
+        android:visibility="invisible"
+        android:text="@string/all_lockscreen"/>
+</RelativeLayout>

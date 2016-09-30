@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BaiduWaimai</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="orderform_sigininorregister">登陆/注册</string>
+    <string name="mine_phonenumber">客服 400-011-777</string>
+    <string name="orderform_header">订单</string>
+    <string name="orderform_signintip">您还没有登录，请登录后查看订单</string>
+    <string name="home_searchhint">搜索商户或商品名称</string>
+    <string name="home_coupon">卷</string>
+    <string name="home_invoice">票</string>
+    <string name="home_pay">付</string>
+    <string name="home_payment">赔</string>
+    <string name="home_eat">餐饮</string>
+    <string name="home_shop">超市购</string>
+    <string name="home_fruit">水果生鲜</string>
+    <string name="home_tea">下午荼</string>
+    <string name="home_tuhao">土豪特供</string>
+    <string name="home_newdian">新店</string>
+    <string name="home_medicine">网上送药</string>
+    <string name="home_deliver">百度配送</string>
+    <string name="home_title">全部商家</string>
+    <string name="home_soldnumbers">已售%1$d份</string>
+    <string name="home_startingfee">起送 ¥ %1$d</string>
+    <string name="home_distributionfee">配送 ¥ %1$d</string>
+    <string name="home_avgtime">平均%1$d分钟</string>
+</resources>

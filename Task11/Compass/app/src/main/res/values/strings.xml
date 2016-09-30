@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">指南针</string>
+    <string name="degree">%1$d°</string>
+</resources>

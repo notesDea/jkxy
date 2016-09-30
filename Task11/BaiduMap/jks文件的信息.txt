@@ -1,0 +1,4 @@
+别名：baidumap
+安全码：65:18:A5:6D:8C:94:04:5D:50:E1:1C:CD:0E:57:0F:9A:E3:AA:FB:72;com.notesdea.baidumap
+AK：aot0VKcfVDs3ewY4GqoZ5WBHdG9HOs4i
+密码：123456
