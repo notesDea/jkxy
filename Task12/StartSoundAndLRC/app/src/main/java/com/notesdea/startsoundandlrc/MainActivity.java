@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -30,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tvLyric = (TextView) findViewById(R.id.tv_lyric);
 
-        play();
-        readLyricFromRaw(R.raw.lyric);
+        readLyricFromRaw(R.raw.counting_stars_lrc);
 
         //显示当前播放的歌词
         mHandler = new Handler() {
@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        play();
+
     }
 
     @Override
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         new LrcSyncThread().start();
         super.onResume();
     }
+
 
     //播放音乐
     private void play() {
@@ -151,27 +155,21 @@ public class MainActivity extends AppCompatActivity {
         return (long) (m * 60 * 1000 + s * 1000);
     }
 
-    class LrcSyncThread extends Thread {
-        @Override
-        public void run() {
-            while (mMediaPlayer.isPlaying()) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                int currentPosition = mMediaPlayer.getCurrentPosition();
-                long currentTimePoint = mLyrics.get(mIndexOfLyrics).getTime();
-                if (Math.abs(currentPosition - currentTimePoint) < 100) {
-                    Message msg = new Message();
-                    msg.what = 0x1233;
-                    msg.arg1 = mIndexOfLyrics;
-                    mHandler.sendMessage(msg);
-                    mIndexOfLyrics++;
-                }
-                if (mIndexOfLyrics == mLyrics.size()) {
-                    mIndexOfLyrics = 0;
-                }
+    //校正歌词时间
+    private void correctTime() {
+        int currentPosition = -1;
+        if (mMediaPlayer.isPlaying()) {
+            currentPosition = mMediaPlayer.getCurrentPosition();
+        }
+
+        for (int i = 0; i < mLyrics.size(); i++) {
+            long currentTimePoint = mLyrics.get(i).getTime();
+            long nextTimePoint = mLyrics.get(i + 1).getTime();
+            if (i < mLyrics.size() - 1 && currentPosition >= currentTimePoint && currentPosition <= nextTimePoint) {
+                mIndexOfLyrics = i;
+            }
+            if (i == mLyrics.size() - 1 && currentPosition >= currentTimePoint) {
+                mIndexOfLyrics = i;
             }
         }
     }
@@ -188,5 +186,32 @@ public class MainActivity extends AppCompatActivity {
         mMediaPlayer.release();
         mMediaPlayer = null;
         super.onDestroy();
+    }
+
+    class LrcSyncThread extends Thread {
+        @Override
+        public void run() {
+            while (mMediaPlayer.isPlaying()) {
+                int currentPosition = mMediaPlayer.getCurrentPosition();
+                long currentTimePoint = mLyrics.get(mIndexOfLyrics).getTime();
+                Log.d("Time", currentPosition + "");
+                //校正时间
+                if (!(currentPosition >= currentTimePoint &&
+                        currentPosition <= mLyrics.get(mIndexOfLyrics + 1).getTime())) {
+                    correctTime();
+                }
+                if ((Math.abs(currentPosition - currentTimePoint)) < 50) {
+                    Message msg = new Message();
+                    msg.what = 0x1233;
+                    msg.arg1 = mIndexOfLyrics;
+                    mHandler.sendMessage(msg);
+                    mIndexOfLyrics++;
+                }
+
+                if (mIndexOfLyrics == mLyrics.size()) {
+                    mIndexOfLyrics = 0;
+                }
+            }
+        }
     }
 }
